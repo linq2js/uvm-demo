@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import DashboardPage from "./pages/DashboardPage";
+import LoginPage from "./pages/LoginPage";
+import usePage from "./hooks/usePage";
+import StudentListPage from "./pages/StudentListPage";
+import StudentReportPage from "./pages/StudentReportPage";
+import SurveyListPage from "./pages/SurveyListPage";
+import SurveyPage from "./pages/SurveyPage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const pages = {
+  dashboard: DashboardPage,
+  studentList: StudentListPage,
+  studentReport: StudentReportPage,
+  surveyList: SurveyListPage,
+  survey: SurveyPage,
+};
+
+const App = () => {
+  const page = usePage();
+  const Component = pages[page] || LoginPage;
+  return <Component />;
+};
 
 export default App;
